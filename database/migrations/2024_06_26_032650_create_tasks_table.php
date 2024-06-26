@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('deskripsi')->nullable();
-            $table->enum('status', ['Belum Selesai', 'Selesai'])->default('Belum Selesai');
+            $table->enum('status', [0, 1])->default(0);
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
