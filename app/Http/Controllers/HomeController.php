@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,13 @@ class HomeController extends Controller
         $userLogin = Auth::user()->id;
         $nama_task = $request->task;
         $deskripsi = $request->deskripsi;
+
+        $validator = Validator::make($request->all(), [
+            'task' => 'required',
+            'foto' => 'mimes:png,jpg|max:2048',
+        ]);
+
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
         $filePath = public_path('upload');
         $insert = new Task();

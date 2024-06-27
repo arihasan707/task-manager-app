@@ -86,6 +86,16 @@
                         Add Task
                     </button>
                 </div>
+                @error('task')
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
+                @enderror
+                @error('foto')
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
+                @enderror
                 <div class="card1 ">
                     <table class="ui celled table" style=" width:100%; padding:0px;">
                         <thead>
@@ -218,17 +228,17 @@
             $('#task').validate({
                 rules: {
                     task: "required",
-                    // image: {
-                    //     required: true,
-                    //     extension: "png|jpg",
-                    // },
+                    foto: {
+                        required: true,
+                        extension: "png|jpg",
+                    },
                 },
                 messages: {
                     task: "<div class='validasi'>Nama tugas harus di isi !<div>",
-                    // image: {
-                    //     required: "<div class='validasi'>Image harus di isi !<div>",
-                    //     extension: "<div class='validasi'>Nama tugas harus di isi !<div>"
-                    // }
+                    foto: {
+                        required: "<div class='validasi'>Foto harus di isi !<div>",
+                        extension: "<div class='validasi'>Tipe File harus berformat PNG/JPG !<div>"
+                    }
                 }
             })
 
