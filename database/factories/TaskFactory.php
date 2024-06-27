@@ -22,7 +22,7 @@ class TaskFactory extends Factory
             'deskripsi' => fake()->text(),
             'user_id' => User::factory(),
             'foto' => fake()->randomElement([
-                'public/backend/img/1.jpg'
+                'public/upload/1.jpg'
             ]),
         ];
     }

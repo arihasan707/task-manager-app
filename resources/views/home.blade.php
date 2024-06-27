@@ -87,7 +87,7 @@
                     </button>
                 </div>
                 <div class="card1 ">
-                    <table id="inbox" class="ui celled table" style=" width:100%; padding:0px;">
+                    <table class="ui celled table" style=" width:100%; padding:0px;">
                         <thead>
                             <tr style=" background-color:#0d6efd; color:white;">
                                 <th>No.</th>
