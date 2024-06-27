@@ -14,7 +14,8 @@ class Task extends Model
     protected $fillable = [
         'nama',
         'deskripsi',
-        'status'
+        'status',
+        'user_id'
     ];
 
     public function user(): BelongsTo
