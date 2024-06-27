@@ -86,14 +86,19 @@
                         Add Task
                     </button>
                 </div>
+                @if (session('sukses'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('sukses') }}
+                </div>
+                @endif
                 @error('task')
                 <div class="alert alert-danger" role="alert">
-                    {{ $message }}
+                    Gagal menyimpan! {{ $message }}
                 </div>
                 @enderror
                 @error('foto')
                 <div class="alert alert-danger" role="alert">
-                    {{ $message }}
+                    Gagal menyimpan! {{ $message }}
                 </div>
                 @enderror
                 <div class="card1 ">

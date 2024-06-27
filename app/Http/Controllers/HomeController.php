@@ -43,7 +43,7 @@ class HomeController extends Controller
         }
 
         $result = $insert->save();
-        return redirect('home')->with('sukses', 'data telah ditambahkan');
+        return redirect('home')->with('sukses', 'Berhasil Menyimpan! Data telah ditambahkan');
     }
 
     public function update(Request $request, string $id)
