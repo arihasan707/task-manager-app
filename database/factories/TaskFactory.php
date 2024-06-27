@@ -20,14 +20,17 @@ class TaskFactory extends Factory
         return [
             'nama' => fake()->sentence(),
             'deskripsi' => fake()->text(),
-            'user_id' => User::factory()
+            'user_id' => User::factory(),
+            'foto' => fake()->randomElement([
+                'public/backend/img/1.jpg'
+            ]),
         ];
     }
 
     public function deskripsi(): static
     {
         return $this->state(fn (array $attributes) => [
-            'deskripsi' => true,
+            'deskripsi' => null,
         ]);
     }
 }

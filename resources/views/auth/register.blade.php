@@ -16,8 +16,8 @@
                         </div>
                         <form action="{{route('register')}}" method="post">
                             @csrf
-                            <input class="form-control @error('name') in-valid @enderror" value="{{old('name')}}" type="text" name="name" placeholder="Full Name">
-                            @error('name')
+                            <input class="form-control @error('nama') in-valid @enderror" value="{{old('nama')}}" type="text" name="nama" placeholder="Full Name">
+                            @error('nama')
                             <div class="invalid">
                                 {{ $message }}
                             </div>

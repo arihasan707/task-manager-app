@@ -94,6 +94,7 @@
                                 <th>Tgl/Waktu</th>
                                 <th>Nama Tugas</th>
                                 <th>Deskripsi</th>
+                                <th>Foto</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
@@ -105,6 +106,7 @@
                                 <td>{{ $task->created_at }}</td>
                                 <td>{{ $task->nama }}</td>
                                 <td>{{ $task->deskripsi }}</td>
+                                <td><img src="{{ asset('upload/' . $task->foto)}}" alt="foto" width="140px"></td>
                                 <td id="status_{{$task->id}}">@if ($task->status == 1)
                                     <span class="badge rounded-pill text-bg-success">Selesai</span>
                                     @else
@@ -138,11 +140,15 @@
                             @csrf
                             <div class=" mb-2">
                                 <label for="exampleFormControlInput1" class="form-label bold">Nama Tugas :</label>
-                                <input type="text" name="task" placeholder="Masukan nama tugas" class="form-control" id="exampleFormControlInput1">
+                                <input type="text" name="task" placeholder="Masukan nama tugas" class="form-control">
                             </div>
                             <div class=" mb-2">
                                 <label for="exampleFormControlInput1" class="form-label bold">Deskripsi :</label>
-                                <input type="text" name="deskripsi" placeholder="Masukan deskripsi" class="form-control" id="exampleFormControlInput1">
+                                <input type="text" name="deskripsi" placeholder="Masukan deskripsi" class="form-control">
+                            </div>
+                            <div class=" mb-2">
+                                <label for="exampleFormControlInput1" class="form-label bold">Masukan Foto :</label>
+                                <input type="file" name="foto" placeholder="Masukan deskripsi" class="form-control">
                             </div>
                     </div>
                     <div class="modal-footer">

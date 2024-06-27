@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
         //     User::factory(3)->create()
         // ])->create();
 
-        Task::factory(10)->recycle([
+        Task::factory(100)->recycle([
             User::factory(3)->create()
-        ])->deskripsi()->create();
+        ])->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',
