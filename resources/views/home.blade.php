@@ -46,12 +46,12 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-5" href="#" data-bs-toggle="dropdown">
                         <img src="backend/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">{{auth()->user()->name}}</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{auth()->user()->nama}}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>{{auth()->user()->name}}</h6>
+                            <h6>{{auth()->user()->nama}}</h6>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -111,14 +111,11 @@
                                     <span class="badge rounded-pill text-bg-danger">Belum Selesai</span>
                                     @endif
                                 </td>
-                                <td id="ok_{{$task->id}}"> @if ($task->status == 0)
-                                    <a href=" #" class="btn btn-success btn-sm selesai" data-id="{{$task->id}}">klik
-                                        Selesai</a>
-                                    @else
-                                    <a href="#" class="btn btn-secondary btn-sm disabled">OK</a>
-                                    @endif
-                                    <a href="#" class="btn btn-danger btn-sm delete" data-id="{{$task->id}}"><i
-                                            class="bx bx-trash"></i></a>
+                                <td id="ok_{{$task->id}}" class="d-content">
+                                    <div class="d-flex justify-content-center">
+                                        <a href="#" class="btn btn-success btn-sm selesai m-1" data-id="{{$task->id}}"><i class="bx bx-check"></i></a>
+                                        <a href="#" class="btn btn-danger btn-sm delete m-1" data-id="{{$task->id}}"><i class="bx bx-trash"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -141,13 +138,11 @@
                             @csrf
                             <div class=" mb-2">
                                 <label for="exampleFormControlInput1" class="form-label bold">Nama Tugas :</label>
-                                <input type="text" name="task" placeholder="Masukan nama tugas" class="form-control"
-                                    id="exampleFormControlInput1">
+                                <input type="text" name="task" placeholder="Masukan nama tugas" class="form-control" id="exampleFormControlInput1">
                             </div>
                             <div class=" mb-2">
                                 <label for="exampleFormControlInput1" class="form-label bold">Deskripsi :</label>
-                                <input type="text" name="deskripsi" placeholder="Masukan deskripsi" class="form-control"
-                                    id="exampleFormControlInput1">
+                                <input type="text" name="deskripsi" placeholder="Masukan deskripsi" class="form-control" id="exampleFormControlInput1">
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -177,8 +172,7 @@
         </div>
     </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <script type="text/javascript" src="backend/js/jquery.js"></script>
     <!-- Vendor JS Files -->
@@ -199,103 +193,96 @@
 
     <!-- Template Main JS File -->
     <script>
-    $(document).ready(function() {
-        $('#inbox').DataTable();
-    });
+        $(document).ready(function() {
+            $('#inbox').DataTable();
+        });
 
-    $('#inbox').DataTable({
-        responsive: true
-    });
+        $('#inbox').DataTable({
+            responsive: true
+        });
     </script>
 
     <script>
-    $('#logOut').on('click', function(e) {
-        e.preventDefault();
-        $('.off').submit();
-    })
-
-    $(document).ready(function() {
-        $('#task').validate({
-            rules: {
-                task: "required",
-                // image: {
-                //     required: true,
-                //     extension: "png|jpg",
-                // },
-            },
-            messages: {
-                task: "<div class='validasi'>Nama tugas harus di isi !<div>",
-                // image: {
-                //     required: "<div class='validasi'>Image harus di isi !<div>",
-                //     extension: "<div class='validasi'>Nama tugas harus di isi !<div>"
-                // }
-            }
+        $('#logOut').on('click', function(e) {
+            e.preventDefault();
+            $('.off').submit();
         })
 
-
-        $('.delete').on('click', function(e) {
-            e.preventDefault()
-            const id = $(this).data('id')
-            alert(id)
-            Swal.fire({
-                title: "Yakin ingin hapus data ini?",
-                text: "Data akan terhapus permanen!",
-                icon: "warning",
-                showCancelButton: true,
-                cancelButtonColor: "#6c757d",
-                confirmButtonColor: "#d33",
-                confirmButtonText: "Ya Hapus!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: "DELETE",
-                        url: "/home/" + id,
-                        success: function(response) {
-                            console.log(response);
-                            Swal.fire({
-                                title: "Terhapus!",
-                                text: response.message,
-                                icon: "success"
-                            });
-
-                            $('#index_' + id).remove();
-                        }
-                    });
+        $(document).ready(function() {
+            $('#task').validate({
+                rules: {
+                    task: "required",
+                    // image: {
+                    //     required: true,
+                    //     extension: "png|jpg",
+                    // },
+                },
+                messages: {
+                    task: "<div class='validasi'>Nama tugas harus di isi !<div>",
+                    // image: {
+                    //     required: "<div class='validasi'>Image harus di isi !<div>",
+                    //     extension: "<div class='validasi'>Nama tugas harus di isi !<div>"
+                    // }
                 }
             })
+
+
+            $('.delete').on('click', function(e) {
+                e.preventDefault()
+                const id = $(this).data('id')
+                Swal.fire({
+                    title: "Yakin ingin hapus data ini?",
+                    text: "Data akan terhapus permanen!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    cancelButtonColor: "#6c757d",
+                    confirmButtonColor: "#d33",
+                    confirmButtonText: "Ya Hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: "DELETE",
+                            url: "/home/" + id,
+                            success: function(response) {
+                                console.log(response);
+                                Swal.fire({
+                                    title: "Terhapus!",
+                                    text: response.message,
+                                    icon: "success"
+                                });
+
+                                $('#index_' + id).remove();
+                            }
+                        });
+                    }
+                })
+            })
+
+            $('.selesai').on('click', function(e) {
+                e.preventDefault();
+                const id = $(this).data('id')
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "PUT",
+                    url: "/home/" + id,
+                    data: {
+                        "status": 1
+                    },
+                    success: function(response) {
+
+                        $('#status_' + id).html(
+                            "<span class='badge rounded-pill text-bg-success'>Selesai</span>"
+                        );
+                    }
+                });
+            })
+
         })
-
-        $('.selesai').on('click', function(e) {
-            e.preventDefault();
-            const id = $(this).data('id')
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: "PUT",
-                url: "/home/" + id,
-                data: {
-                    "status": 1
-                },
-                success: function(response) {
-
-                    $('#status_' + id).html(
-                        "<span class='badge rounded-pill text-bg-success'>Selesai</span>"
-                    );
-                    $('#ok_' + id).append(
-                        "<span class='btn btn-sm btn-secondary disabled'>OK</span>",
-
-                    );
-                }
-            });
-
-
-        })
-
-    })
     </script>
 
 

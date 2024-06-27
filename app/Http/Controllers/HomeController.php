@@ -23,7 +23,7 @@ class HomeController extends Controller
         $nama_task = $request->task;
         $deskripsi = $request->deskripsi;
 
-        $data = Task::create([
+        Task::create([
             'nama' => $nama_task,
             'deskripsi' => $deskripsi,
             'user_id' => $userLogin

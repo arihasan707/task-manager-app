@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('nama');
             $table->string('deskripsi')->nullable();
             $table->enum('status', [0, 1])->default(0);
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained(
+                table: 'users',
+                indexName: 'task_user_id'
+            );
             $table->timestamps();
         });
     }
