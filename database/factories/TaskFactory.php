@@ -24,10 +24,10 @@ class TaskFactory extends Factory
         ];
     }
 
-    public function deskripsi_null(): static
+    public function deskripsi(): static
     {
         return $this->state(fn (array $attributes) => [
-            'deskripsi' => null,
+            'deskripsi' => true,
         ]);
     }
 }
