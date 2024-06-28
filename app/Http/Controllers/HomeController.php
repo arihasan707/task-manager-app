@@ -26,7 +26,9 @@ class HomeController extends Controller
             'foto' => 'mimes:png,jpg|max:2048',
         ]);
 
-        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
 
         $filePath = public_path('upload');
         $insert = new Task();
