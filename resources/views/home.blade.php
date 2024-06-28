@@ -206,7 +206,6 @@
     <script src="backend/vendor/quill/quill.min.js"></script>
     <script src="backend/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="backend/vendor/tinymce/tinymce.min.js"></script>
-    <script src="backend/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="backend/vendor/sweet/sweetalert2.all.min.js"></script>
 
     <!-- sweetalert -->
@@ -230,23 +229,6 @@
         })
 
         $(document).ready(function() {
-            $('#task').validate({
-                rules: {
-                    task: "required",
-                    foto: {
-                        required: true,
-                        extension: "png|jpg",
-                    },
-                },
-                messages: {
-                    task: "<div class='validasi'>Nama tugas harus di isi !<div>",
-                    foto: {
-                        required: "<div class='validasi'>Foto harus di isi !<div>",
-                        extension: "<div class='validasi'>Tipe File harus berformat PNG/JPG !<div>"
-                    }
-                }
-            })
-
 
             $('.delete').on('click', function(e) {
                 e.preventDefault()
